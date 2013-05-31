@@ -1,0 +1,5 @@
+C:\Projects\Practice\ProcessMonitor\WelchAllyn\ProcessMonitor\WMIProvider\bin\Debug\WMIProvider.dll
+C:\Projects\Practice\ProcessMonitor\WelchAllyn\ProcessMonitor\WMIProvider\bin\Debug\WMIProvider.pdb
+C:\Projects\Practice\ProcessMonitor\WelchAllyn\ProcessMonitor\WMIProvider\obj\Debug\WMIProvider.dll
+C:\Projects\Practice\ProcessMonitor\WelchAllyn\ProcessMonitor\WMIProvider\obj\Debug\WMIProvider.pdb
+C:\Projects\Practice\ProcessMonitor\WelchAllyn\ProcessMonitor\WMIProvider\bin\Debug\WMIProvider.xml

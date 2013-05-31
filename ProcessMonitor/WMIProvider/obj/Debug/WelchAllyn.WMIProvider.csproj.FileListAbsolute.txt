@@ -1,0 +1,16 @@
+C:\Projects\WatchDogs\Main\WelchAllyn\ProcessMonitor\WMIProvider\bin\Debug\WelchAllyn.WMIProvider.XML
+C:\Projects\WatchDogs\Main\WelchAllyn\ProcessMonitor\WMIProvider\bin\Debug\WelchAllyn.WMIProvider.dll
+C:\Projects\WatchDogs\Main\WelchAllyn\ProcessMonitor\WMIProvider\bin\Debug\WelchAllyn.WMIProvider.pdb
+C:\Projects\WatchDogs\Main\WelchAllyn\ProcessMonitor\WMIProvider\bin\Debug\WelchAllyn.Core.dll
+C:\Projects\WatchDogs\Main\WelchAllyn\ProcessMonitor\WMIProvider\bin\Debug\System.ComponentModel.Composition.Codeplex.dll
+C:\Projects\WatchDogs\Main\WelchAllyn\ProcessMonitor\WMIProvider\bin\Debug\de-DE\WelchAllyn.Core.resources.dll
+C:\Projects\WatchDogs\Main\WelchAllyn\ProcessMonitor\WMIProvider\bin\Debug\es-ES\WelchAllyn.Core.resources.dll
+C:\Projects\WatchDogs\Main\WelchAllyn\ProcessMonitor\WMIProvider\bin\Debug\fr-FR\WelchAllyn.Core.resources.dll
+C:\Projects\WatchDogs\Main\WelchAllyn\ProcessMonitor\WMIProvider\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\WatchDogs\Main\WelchAllyn\ProcessMonitor\WMIProvider\obj\Debug\WelchAllyn.WMIProvider.dll
+C:\Projects\WatchDogs\Main\WelchAllyn\ProcessMonitor\WMIProvider\obj\Debug\WelchAllyn.WMIProvider.pdb
+C:\Projects\Practice\ProcessMonitor\WelchAllyn\ProcessMonitor\WMIProvider\bin\Debug\WMIProvider.xml
+C:\Projects\Practice\ProcessMonitor\WelchAllyn\ProcessMonitor\WMIProvider\bin\Debug\WMIProvider.dll
+C:\Projects\Practice\ProcessMonitor\WelchAllyn\ProcessMonitor\WMIProvider\bin\Debug\WMIProvider.pdb
+C:\Projects\Practice\ProcessMonitor\WelchAllyn\ProcessMonitor\WMIProvider\obj\Debug\WMIProvider.dll
+C:\Projects\Practice\ProcessMonitor\WelchAllyn\ProcessMonitor\WMIProvider\obj\Debug\WMIProvider.pdb

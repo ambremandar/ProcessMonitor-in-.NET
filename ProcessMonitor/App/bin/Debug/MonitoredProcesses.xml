@@ -1,0 +1,7 @@
+﻿<!-- This xml contains Services and Applications that are to be loaded by Process Monitor. These applications are local to the system hence paths will have to be configured to local system-->
+<Processes>
+  <Process Type="Service" Name="MSSQL$SQLEXPRESS" ServiceName="MSSQL$SQLEXPRESS" RestartTimeout="30" /> 
+  <Process Type="Application" Name="notepad.exe" Command="notepad.exe" DirPath="C:\Windows\System32" RestartTimeout="30" >
+    <Dependency Name="MSSQL$SQLEXPRESS" />
+  </Process>
+</Processes>

@@ -1,0 +1,600 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WMIProvider</name>
+    </assembly>
+    <members>
+        <member name="T:WMIProvider.ProcessState">
+            <summary>
+            Gives the status of a process
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessState.Running">
+            <summary>
+             Process is Running
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessState.Stopped">
+            <summary>
+             Process is Stopped
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessState.Error">
+            <summary>
+             Process has errored
+            </summary>
+        </member>
+        <member name="T:WMIProvider.ProcessConnection">
+            <summary>
+            This class initializes various connection params
+            </summary>
+        </member>
+        <member name="M:WMIProvider.ProcessConnection.ProcessConnectionOptions">
+            <summary>
+            Sets various process connection options
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessConnection.ConnectionScope(System.String,System.Management.ConnectionOptions)">
+            <summary>
+            Sets the scope of the connection i.e what is the default WMI namespace for a process, what is the machine name etc
+            </summary>
+            <param name="machineName"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessConnection.ConnectionScope(System.String,System.String,System.Management.ConnectionOptions)">
+            <summary>
+            Sets the scope of the connection using given machine name,WMI namespace and connection options
+            </summary>
+            <param name="machineName"></param>
+            <param name="path"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WMIProvider.ProcessManager">
+            <summary>
+            This class handles all process management related tasks
+            </summary>
+        </member>
+        <member name="M:WMIProvider.IProcessManagement.GetProcessState(WMIProvider.Process)">
+            <summary>
+            Get status of Windows Process
+            </summary>
+            <param name="process"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.IProcessManagement.CreateProcess(WMIProvider.Process)">
+            <summary>
+            Create a Windows Process
+            </summary>
+            <param name="process"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.IProcessManagement.TerminateProcess(System.String)">
+            <summary>
+            Terminate a Windows Process
+            </summary>
+            <param name="processName"></param>
+            <returns></returns>
+        </member>
+        <member name="F:WMIProvider.ProcessManager.serviceManager">
+            <summary>
+            ServiceManager instance
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessManager.options">
+            <summary>
+            ConnectionOptions instance
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessManager.connectionScope">
+            <summary>
+            ManagementScope instance
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessManager.defaultHeartbeatTimeout">
+            <summary>
+            Default timeout interval for checking heartbeat
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessManager.monitoredProcessName">
+            <summary>
+            MonitoredProcessName
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessManager.currentProcessState">
+            <summary>
+            CurrentProcessState
+            </summary>
+        </member>
+        <member name="M:WMIProvider.ProcessManager.#ctor">
+            <summary>
+             ProcessManager
+            </summary>
+        </member>
+        <member name="M:WMIProvider.ProcessManager.GetProcessState(WMIProvider.Process)">
+            <summary>
+            Returns if the process is running,stopped or errored
+            </summary>
+            <param name="process"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManager.IsProcessRunning(WMIProvider.Process)">
+            <summary>
+            Checks if the process is running
+            </summary>
+            <param name="process"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManager.IsProcessStopped(WMIProvider.Process)">
+            <summary>
+            Checks if the process is stopped
+            </summary>
+            <param name="process"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManager.CheckHeartbeat(WMIProvider.Process)">
+            <summary>
+            Checks if the heartbeat message from the app is recieved
+            </summary>
+            <param name="process"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManager.HandleEventWatcher(System.Object,System.Management.EventArrivedEventArgs)">
+            <summary>
+            EventWatcher handler to get state of the monitored process
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:WMIProvider.ProcessManager.CheckWindowsErrorReportingMessage">
+            <summary>
+            If windows error reporting is blocking ConnexCS app then terminate the error window.
+            Detect the windows error reporting processid.
+            Detect the parent processid for wer process and check if this id is the same as the CS app process id.
+            This will help us determine if windows error is blocking CS app.
+            </summary>
+        </member>
+        <member name="M:WMIProvider.ProcessManager.ProcessProperties(System.String)">
+            <summary>
+            Returns a list of properties for a given process
+            </summary>
+            <param name="processName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManager.CreateProcess(WMIProvider.Process)">
+            <summary>
+            Method to start a process
+            </summary>
+            <param name="process"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManager.TerminateProcess(System.String)">
+            <summary>
+            Method to end a process
+            </summary>
+            <param name="processName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManager.StopProcess(WMIProvider.Process)">
+            <summary>
+            Stops a process
+            </summary>
+            <param name="process"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManager.StartProcess(WMIProvider.Process)">
+            <summary>
+            Starts a process
+            </summary>
+            <param name="process"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManager.RebootComputer">
+            <summary>
+            Reboots a computer
+            </summary>
+            <returns>0 if success</returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManager.GetLastBootUpTime">
+            <summary>
+            Gives the time when the computer last restarted
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManagementHelper.StartProcess(System.String,System.String,System.String)">
+            <summary>
+            Method to Start a process
+            </summary>
+            <param name="machineName"></param>
+            <param name="dirPath"></param>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManagementHelper.KillProcess(System.Management.ManagementScope,System.String)">
+            <summary>
+            Method to end a process
+            </summary>
+            <param name="connectionScope"></param>
+            <param name="processName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManagementHelper.IsProcessRunning(System.Management.ManagementScope,System.String)">
+            <summary>
+            Returns if process is currently running or not
+            </summary>
+            <param name="connectionScope"></param>
+            <param name="processName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManagementHelper.ProcessProperties(System.Management.ManagementScope,System.String)">
+            <summary>
+            Returns a list of properties for each process
+            </summary>
+            <param name="connectionScope"></param>
+            <param name="processName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ProcessManagementHelper.TranslateMemoryUsage(System.String)">
+            <summary>
+            Translates the memory usage from bytes to KB
+            </summary>
+            <param name="workingSet"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WMIProvider.ProcessReturnCode">
+            <summary>
+            Defines the return status of an action invoked on a Windows Service or a Process
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.Success">
+            <summary>
+            Success
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.NotSupported">
+            <summary>
+            NotSupported
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.AccessDenied">
+            <summary>
+            AccessDenied
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.DependentServicesRunning">
+            <summary>
+            DependentServicesRunning
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.InvalidServiceControl">
+            <summary>
+            DependentServicesRunning
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.ServiceCannotAcceptControl">
+            <summary>
+            ServiceCannotAcceptControl
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.ServiceNotActive">
+            <summary>
+            ServiceNotActive
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.ServiceRequestTimeout">
+            <summary>
+            ServiceRequestTimeout
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.UnknownFailure">
+            <summary>
+            UnknownFailure
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.PathNotFound">
+            <summary>
+            PathNotFound
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.ServiceAlreadyRunning">
+            <summary>
+            ServiceAlreadyRunning
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.ServiceDatabaseLocked">
+            <summary>
+            ServiceDatabaseLocked
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.ServiceDependencyDeleted">
+            <summary>
+            ServiceDependencyDeleted
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.ServiceDependencyFailure">
+            <summary>
+            ServiceDependencyFailure
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.ServiceDisabled">
+            <summary>
+            ServiceDisabled
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.ServiceLogonFailure">
+            <summary>
+            ServiceLogonFailure
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.ServiceMarkedForDeletion">
+            <summary>
+            ServiceMarkedForDeletion
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.ServiceNoThread">
+            <summary>
+            ServiceNoThread
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.StatusCircularDependency">
+            <summary>
+            StatusCircularDependency
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.StatusDuplicateName">
+            <summary>
+            StatusDuplicateName
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.StatusInvalidName">
+            <summary>
+            StatusInvalidName
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.StatusInvalidParameter">
+            <summary>
+            StatusInvalidParameter
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.StatusInvalidServiceAccount">
+            <summary>
+            StatusInvalidServiceAccount
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.StatusServiceExists">
+            <summary>
+            StatusServiceExists
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.ServiceAlreadyPaused">
+            <summary>
+            ServiceAlreadyPaused
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ProcessReturnCode.ServiceNotFound">
+            <summary>
+            ServiceNotFound
+            </summary>
+        </member>
+        <member name="T:WMIProvider.ServiceState">
+            <summary>
+            State of the windows service
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ServiceState.Running">
+            <summary>
+            Running
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ServiceState.Stopped">
+            <summary>
+            Stopped
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ServiceState.Paused">
+            <summary>
+            Paused
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ServiceState.StartPending">
+            <summary>
+            StartPending
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ServiceState.StopPending">
+            <summary>
+            StopPending
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ServiceState.PausePending">
+            <summary>
+            PausePending
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ServiceState.ContinuePending">
+            <summary>
+            ContinuePending
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ServiceState.NotFound">
+            <summary>
+            NotFound
+            </summary>
+        </member>
+        <member name="T:WMIProvider.ServiceStartMode">
+            <summary>
+            StartMode of the windows service
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ServiceStartMode.Automatic">
+            <summary>
+            Automatic
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ServiceStartMode.Manual">
+            <summary>
+            Manual
+            </summary>
+        </member>
+        <member name="F:WMIProvider.ServiceStartMode.Disabled">
+            <summary>
+            Disabled
+            </summary>
+        </member>
+        <member name="T:WMIProvider.ServiceManager">
+            <summary>
+            This class handles all service management related tasks
+            </summary>
+        </member>
+        <member name="M:WMIProvider.ServiceManager.GetServiceState(WMIProvider.Process)">
+            <summary>
+            Gets the state of a Windows Service
+            </summary>
+            <param name="process"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ServiceManager.GetServiceStartMode(WMIProvider.Process)">
+            <summary>
+            Gets the start mode of a Windows Service
+            </summary>
+            <param name="process"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ServiceManager.RestartService(WMIProvider.Process)">
+            <summary>
+            Restarts a Windows Service
+            </summary>
+            <param name="process"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WMIProvider.ServiceManager.StartService(WMIProvider.Process)">
+            <summary>
+            Starts a Windows Service
+            </summary>
+            <param name="process"></param>
+            <returns>return status after Starting service</returns>
+        </member>
+        <member name="M:WMIProvider.ServiceManager.StopService(WMIProvider.Process)">
+            <summary>
+            Stops a Windows Service
+            </summary>
+            <param name="process"></param>
+            <returns>return status after stopping service</returns>
+        </member>
+        <member name="M:WMIProvider.ServiceManager.GetServiceName(WMIProvider.Process)">
+            <summary>
+            Get service name
+            </summary>
+            <param name="process"></param>
+            <returns></returns>
+        </member>
+        <member name="T:EventInstaller">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:WMIProvider.Process">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:WMIProvider.Process.Type">
+            <summary>
+            Type of Process (Service or Application)
+            </summary>
+        </member>
+        <member name="P:WMIProvider.Process.Name">
+            <summary>
+            Name of Process
+            </summary>
+        </member>
+        <member name="P:WMIProvider.Process.ServiceName">
+            <summary>
+            Service Name
+            </summary>
+        </member>
+        <member name="P:WMIProvider.Process.Command">
+            <summary>
+            Start command of Process
+            </summary>
+        </member>
+        <member name="P:WMIProvider.Process.DirPath">
+            <summary>
+            Directory Path of Process
+            </summary>
+        </member>
+        <member name="P:WMIProvider.Process.HasHeartBeat">
+            <summary>
+            Process is sending heart beat if set to true
+            </summary>
+        </member>
+        <member name="P:WMIProvider.Process.HeartbeatTimeout">
+            <summary>
+            Maximum time to wait for a heartbeat
+            </summary>
+        </member>
+        <member name="P:WMIProvider.Process.Mode">
+            <summary>
+            If DemoMode is set to true for a process then its only for demo purposes otherwise set to false
+            </summary>
+        </member>
+        <member name="P:WMIProvider.Process.RestartTimeout">
+            <summary>
+            Maximum time to wait for the process to restart
+            </summary>
+        </member>
+        <member name="P:WMIProvider.Process.Dependencies">
+            <summary>
+            Dependencies for each process
+            </summary>
+        </member>
+        <member name="P:WMIProvider.Process.CurrentState">
+            <summary>
+            State of the process. Happy,Dead or Hung
+            </summary>
+        </member>
+        <member name="T:WMIProvider.Dependency">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:WMIProvider.Dependency.Name">
+            <summary>
+            Name of Dependent Process
+            </summary>
+        </member>
+        <member name="T:WMIProvider.ProcessHelper">
+            <summary>
+            Static class with extension methods for Process
+            </summary>
+        </member>
+        <member name="M:WMIProvider.ProcessHelper.Exists(WMIProvider.Process,System.Collections.Generic.List{WMIProvider.Process})">
+            <summary>
+             Checks if the process exists on the computer.
+            </summary>
+            <param name="process">process</param>
+            <param name="logWriter">log writer instance</param>
+            <param name="currentListOfUnAvailableProcesses">currentListOfUnAvailableProcesses</param>
+            <returns></returns>
+        </member>
+        <member name="T:WMIProvider.State">
+            <summary>
+             
+            </summary>
+        </member>
+        <member name="F:WMIProvider.State.IsHappy">
+            <summary>
+            Process is running
+            </summary>
+        </member>
+        <member name="F:WMIProvider.State.IsDead">
+            <summary>
+            If process doesnot have heartbeat and is not in system services then the process is dead
+            </summary>
+        </member>
+        <member name="F:WMIProvider.State.IsHung">
+            <summary>
+            If process doesnot have heartbeat but is in system services then the process is hung
+            </summary>
+        </member>
+    </members>
+</doc>
