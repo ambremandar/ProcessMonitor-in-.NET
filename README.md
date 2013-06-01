@@ -13,3 +13,4 @@ Features:
    for a given process so that if one of the dependencies has to be restarted by the process monitor then the parent process
    will also get restarted by process monitor. This way the dependent processes get started in correct order.
 4. This application can also be run as windows service by using a service installer.
+5. This app uses Windows Management Instrumentation(WMI) to manage processes. .NET wrapper is built around WMI API.
